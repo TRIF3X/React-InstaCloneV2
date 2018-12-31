@@ -1,5 +1,5 @@
 import React from 'react'
-import like from './likeandcomment.PNG'
+import like from './img/likeandcomment.PNG'
 import './Post.css'
 
 

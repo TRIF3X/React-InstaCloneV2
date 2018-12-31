@@ -5,15 +5,17 @@
     padding-left: 2%;
 }
 .image {
-    width: 99%;
-    padding-left: .5%;
+    width: 100%;
 }
 .headerH4 {
     padding-left: 2%; 
+    display: flex;
+    align-items: center;
 }
 .thumbnail {
     border-radius: 50%;
     width: 5%;
+    margin-right: 2%;
 }
 .containerDiv {
     margin: 7% 0%;
