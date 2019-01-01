@@ -6,7 +6,7 @@ import './Post.css'
 
 function Post(props) {
 
-    const [value, setValue] = useState('Add a comment...')
+    const [value, setValue] = useState()
     const handleChange = (e) => setValue(e.target.value)
 
     return (
@@ -18,13 +18,16 @@ function Post(props) {
                     <p className='likes'>Likes</p>  
                     <CommentMap
                     comments={props.post.comments}
-                    />   
+                    /> 
+                    <form className='commentsForm'>
                     <input
                     className='commentsInput'
                     type='text'
+                    placeholder='Add a comment...'
                     value={value}
                     onChange={handleChange}
-                    />      
+                    />    
+                    </form>    
             </div>
         </div>
     )
