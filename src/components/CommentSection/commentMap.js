@@ -7,6 +7,7 @@ function CommentMap(props) {
             return (
                 <Comments
                  comments={comments}
+                 key={comments.text}
                  />
             )
         })

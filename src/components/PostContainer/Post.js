@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import like from './img/likeandcomment.PNG'
 import CommentMap from '../CommentSection/commentMap.js'
 import './Post.css'
 
 
 function Post(props) {
+
+    const [value, setValue] = useState('Add a comment...')
+    const handleChange = (e) => setValue(e.target.value)
+
     return (
         <div className='masterDiv'>
             <div className='containerDiv'>
@@ -14,7 +18,13 @@ function Post(props) {
                     <p className='likes'>Likes</p>  
                     <CommentMap
                     comments={props.post.comments}
-                    />         
+                    />   
+                    <input
+                    className='commentsInput'
+                    type='text'
+                    value={value}
+                    onChange={handleChange}
+                    />      
             </div>
         </div>
     )
