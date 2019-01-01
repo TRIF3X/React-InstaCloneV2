@@ -9,13 +9,26 @@ function Post(props) {
     const [value, setValue] = useState()
     const handleChange = (e) => setValue(e.target.value)
 
+    const [count, setCount] = useState(props.post.likes)
+    const [likeFlag, setLikeFlag] = useState(false)
+
+    const likePost = () => {
+        if(likeFlag === true) {
+            setLikeFlag(false)
+            setCount(count - 1)
+        } else {
+            setLikeFlag(true)
+            setCount(count + 1)
+        }
+    }
+
     return (
         <div className='masterDiv'>
             <div className='containerDiv'>
                 <h4 className='headerH4'><img className='thumbnail' src={props.post.thumbnailUrl} alt='header thumbnail'/>{props.post.username}</h4>
                     <img className='image' src={props.post.imageUrl} alt='user post' />
-                    <img className='likeandcommentIcons' src={like} alt='like button' />
-                    <p className='likes'>Likes</p>  
+                    <img className='likeandcommentIcons' src={like} alt='like button' onClick={likePost} />
+                    <p className='likes'>{count} likes</p>  
                     <CommentMap
                     comments={props.post.comments}
                     /> 
