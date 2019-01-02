@@ -8,7 +8,8 @@ class App extends Component {
     super(props) 
       this.state = {
         search: '',
-        data: []
+        data: [],
+        searchData: []
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -18,11 +19,23 @@ class App extends Component {
   }
 
   handleChange(e) {
-    console.log(e)
     this.setState({ [e.target.name]: e.target.value })
+    this.searchUser(this.state.search, this.state.data)
+  }
+
+  searchUser(name, data) {
+    for (var i=0; i < data.length; i++) {
+      if (data[i].username.includes(name)) {
+          this.state.searchData.push(data[i]);
+          if(this.state.searchData.includes(data[i], 1)) {
+            this.state.searchData.splice(0, 1)
+          }
+      }
+    }
   }
 
   render() {
+    // console.log(this.searchUser("phil", this.state.data))
     return (
       <div className="App">
           <header className="mainHeadBar">
@@ -33,7 +46,7 @@ class App extends Component {
           </header>
           <div>
             <PostMap 
-              data={this.state.data}
+              data={this.state.searchData.length === 0 ? this.state.data: this.state.searchData}
             />
           </div>
       </div>
