@@ -6,11 +6,24 @@ import './Post.css'
 
 function Post(props) {
 
-    const [value, setValue] = useState()
+    const [value, setValue] = useState('')
     const handleChange = (e) => setValue(e.target.value)
+    const [commentFlag, setCommentFlag] = useState(false)
+
+    const handleComment = (e) => {
+        e.preventDefault()
+        props.post.comments.push({'username': 'conner', 'text': value})
+        if(e) {
+            setCommentFlag(true)
+            setValue('')
+        } else if (commentFlag === true) {
+            setCommentFlag(false)
+        }
+    }
 
     const [count, setCount] = useState(props.post.likes)
     const [likeFlag, setLikeFlag] = useState(false)
+    const [icon, setIcon] = useState(like)
 
     const likePost = () => {
         if(likeFlag === true) {
@@ -27,12 +40,12 @@ function Post(props) {
             <div className='containerDiv'>
                 <h4 className='headerH4'><img className='thumbnail' src={props.post.thumbnailUrl} alt='header thumbnail'/>{props.post.username}</h4>
                     <img className='image' src={props.post.imageUrl} alt='user post' />
-                    <img className='likeandcommentIcons' src={like} alt='like button' onClick={likePost} />
+                    <img className='likeandcommentIcons' src={icon} alt='like button' onClick={likePost} />
                     <p className='likes'>{count} likes</p>  
                     <CommentMap
                     comments={props.post.comments}
                     /> 
-                    <form className='commentsForm'>
+                    <form className='commentsForm' onSubmit={handleComment}>
                     <input
                     className='commentsInput'
                     type='text'
