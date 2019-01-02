@@ -35,7 +35,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.searchUser("phil", this.state.data))
     return (
       <div className="App">
           <header className="mainHeadBar">
@@ -46,7 +45,7 @@ class App extends Component {
           </header>
           <div>
             <PostMap 
-              data={this.state.searchData.length === 0 ? this.state.data: this.state.searchData}
+              data={this.state.search === '' ? this.state.data: this.state.searchData}
             />
           </div>
       </div>
