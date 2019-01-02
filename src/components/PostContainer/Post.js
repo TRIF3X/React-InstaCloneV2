@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import like from './img/likeandcomment.PNG'
+import like from './img/like.PNG'
+import liked from './img/liked.PNG'
 import CommentMap from '../CommentSection/commentMap.js'
 import './Post.css'
 
@@ -29,9 +30,13 @@ function Post(props) {
         if(likeFlag === true) {
             setLikeFlag(false)
             setCount(count - 1)
+            setIcon(like)
+            document.getElementsByClassName('likeandcommentIcons')[0].style.marginTop = '0px'
         } else {
             setLikeFlag(true)
             setCount(count + 1)
+            setIcon(liked)
+            document.getElementsByClassName('likeandcommentIcons')[0].style.marginTop = '2px'
         }
     }
 
